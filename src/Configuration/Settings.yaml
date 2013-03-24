@@ -1,0 +1,7 @@
+Com:
+  TechDivision:
+    Search:
+      Solr:
+        ServerData:
+          hostname: 'localhost'
+          port: 8983
