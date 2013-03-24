@@ -18,6 +18,6 @@
 	<logging>
 		<log type="junit" target="Reports/FunctionalTests.xml" logIncompleteSkipped="false"/>
 		<log type="testdox-text" target="Reports/FunctionalTestDox.txt"/>
-		<log type="coverage-html" target="Reports/Coverage" charset="UTF-8"/>
+		<log type="coverage-html" target="Reports/FunctionalCoverage" charset="UTF-8"/>
 	</logging>
 </phpunit>

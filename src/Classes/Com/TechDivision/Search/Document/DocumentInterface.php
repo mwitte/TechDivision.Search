@@ -21,7 +21,7 @@ interface DocumentInterface
 	public function setFields(array $fields);
 
 	/**
-	 * @return array
+	 * @return array with \Com\TechDivision\Search\Field\FieldInterface
 	 */
 	public function getFields();
 
