@@ -3,7 +3,7 @@
 namespace Com\TechDivision\Search\Tests\Unit\Field;
 
 
-class SolrDocumentTest extends \TYPO3\Flow\Tests\UnitTestCase {
+class DocumentTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	/**
 	 * @var \Com\TechDivision\Search\Document\Document
@@ -29,7 +29,12 @@ class SolrDocumentTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	public function testAddAndGetField(){
 		$this->document->addField($this->fieldOne);
-		$this->assertSame(array($this->fieldOne), $this->document->getFields());
+		$this->assertSame($this->fieldOne, $this->document->getField('name'));
+	}
+
+	public function testAddAndGetFieldWithWrongName(){
+		$this->document->addField($this->fieldOne);
+		$this->assertSame(null, $this->document->getField('wrongName'));
 	}
 
 	/**

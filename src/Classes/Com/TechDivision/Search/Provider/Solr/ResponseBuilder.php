@@ -15,7 +15,6 @@ class ResponseBuilder
 		$fieldFactory = new \Com\TechDivision\Search\Field\SolrFieldFactory();
 		$response = $rawResponse->getResponse();
 		if($response){
-			//var_dump($response);
 			//$documentFactory->createFromResponse($response, $fieldFactory);
 			return $documentFactory->createFromResponse($response, $fieldFactory);
 		}

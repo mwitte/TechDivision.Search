@@ -21,6 +21,12 @@ interface DocumentInterface
 	public function setFields(array $fields);
 
 	/**
+	 * @param string $fieldName
+	 * @return \Com\TechDivision\Search\Field\FieldInterface|null
+	 */
+	public function getField($fieldName);
+
+	/**
 	 * @return array with \Com\TechDivision\Search\Field\FieldInterface
 	 */
 	public function getFields();

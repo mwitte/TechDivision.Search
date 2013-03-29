@@ -14,7 +14,7 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 	/**
 	 * @var \SolrClient
 	 */
-	protected $solrClient;
+	protected $client;
 
 	/**
 	 * @var array
@@ -40,6 +40,30 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 	protected $inputBuilder;
 
 	/**
+	 * Gets called after instantiation and dependency injection
+	 *
+	 * @return void
+	 */
+	public function initializeObject() {
+		// Setup the solr client if didn't set by constructor
+		if(!$this->client){
+			// create the client instance
+			$this->client = new \SolrClient($this->getClientOptions());
+			try{
+				$ping = $this->client->ping();
+			}catch (\Exception $e){
+				// @codeCoverageIgnoreStart
+				$message = "Could not connect to solr server with settings: \n";
+				foreach($this->getClientOptions() as $key => $value){
+					$message .= $key . ": ". $value . " \n";
+				}
+				// TODO probably own exceptions?
+				throw new \Exception($message);
+				// @codeCoverageIgnoreEnd
+			}
+		}
+	}
+	/**
 	 * Inject the settings
 	 *
 	 * @param array $settings
@@ -47,8 +71,6 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 	 */
 	public function injectSettings(array $settings) {
 		$this->settings = $settings;
-		// setup the solr client after the settings got injected
-		$this->setUpClient();
 	}
 
 	/**
@@ -63,7 +85,7 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 		try{
 			$query = $this->queryBuilder->buildQuery($searchString, $fields, $rows, $offset);
 			// get the response
-			$queryResponse = $this->solrClient->query(
+			$queryResponse = $this->client->query(
 				$query
 			);
 			return $this->responseBuilder->createProviderSearchResponse($queryResponse);
@@ -82,9 +104,9 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 		$inputDocument = $this->inputBuilder->createSolrInputDocument($document);
 		if($inputDocument){
 			try{
-				$response = $this->solrClient->addDocument($inputDocument, FALSE, 0);
+				$response = $this->client->addDocument($inputDocument, FALSE, 0);
 				// TODO configurable?
-				$this->solrClient->commit(1, true, true);
+				$this->client->commit(1, true, true);
 				return $response->success();
 				// TODO Workaround for codeCoverage?
 				// @codeCoverageIgnoreStart
@@ -105,9 +127,9 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 		$inputDocuments = $this->inputBuilder->createSolrInputDocuments($documents);
 		if($inputDocuments){
 			try{
-				$response = $this->solrClient->addDocuments($inputDocuments, FALSE, 0);
+				$response = $this->client->addDocuments($inputDocuments, FALSE, 0);
 				// TODO configurable?
-				$this->solrClient->commit(1, true, true);
+				$this->client->commit(1, true, true);
 				return $response->success();
 				// TODO Workaround for codeCoverage?
 				// @codeCoverageIgnoreStart
@@ -137,9 +159,9 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 	public function removeDocumentByIdentifier($identifier)
 	{
 		try{
-			$response = $this->solrClient->deleteById($identifier);
+			$response = $this->client->deleteById($identifier);
 			// TODO configurable?
-			$this->solrClient->commit(1, true, true);
+			$this->client->commit(1, true, true);
 			return $response->success();
 			// TODO Workaround for codeCoverage?
 			// @codeCoverageIgnoreStart
@@ -158,25 +180,6 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 		return TRUE;
 	}
 
-	protected function setUpClient(){
-		if(!$this->solrClient){
-			// create the client instance
-			$this->solrClient = new \SolrClient($this->getClientOptions());
-			try{
-				$ping = $this->solrClient->ping();
-			}catch (\Exception $e){
-				// TODO Workaround for codeCoverage?
-				// @codeCoverageIgnoreStart
-				$message = "Could not connect to solr server with settings: \n";
-				foreach($this->getClientOptions() as $key => $value){
-					$message .= $key . ": ". $value . " \n";
-				}
-				// TODO probably own exceptions?
-				throw new \Exception($message);
-				// @codeCoverageIgnoreEnd
-			}
-		}
-	}
 	/**
 	 * @return mixed
 	 */
@@ -194,7 +197,7 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 	 */
 	public function commit($maxSegments = 1, $waitFlush = true, $waitSearcher = true)
 	{
-		$response = $this->solrClient->commit($maxSegments, $waitFlush, $waitSearcher);
+		$response = $this->client->commit($maxSegments, $waitFlush, $waitSearcher);
 		return $response->success();
 	}
 }

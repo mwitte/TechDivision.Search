@@ -41,17 +41,20 @@ class QueryBuilder
 	protected function buildSearchString($searchString, array $fields){
 		$query = '';
 		$iterator = 0;
+		$searchWords = explode(" ", trim($searchString));
 		/** @var $field \Com\TechDivision\Search\Field\Field */
 		foreach($fields as $field){
-			// after first iteration
-			if($iterator > 0){
-				// TODO configurable!
-				// concatenate statements
-				$query .= ' OR ';
+			foreach($searchWords as $searchWord){
+				// after first iteration
+				if($iterator > 0){
+					// TODO configurable!
+					// concatenate statements
+					$query .= ' OR ';
+				}
+				$iterator++;
+				// build statement and concatenate
+				$query .= $field->getName() . ':"'. $searchWord . '"';
 			}
-			$iterator++;
-			// build statement and concatenate
-			$query .= $field->getName() . ':"'. $searchString . '"';
 		}
 		return $query;
 	}

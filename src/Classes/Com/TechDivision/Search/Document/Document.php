@@ -38,6 +38,20 @@ class Document implements DocumentInterface
 	}
 
 	/**
+	 * @param string $fieldName
+	 * @return \Com\TechDivision\Search\Field\FieldInterface|null
+	 */
+	public function getField($fieldName){
+		/** @var $field \Com\TechDivision\Search\Field\FieldInterface */
+		foreach($this->fields as $field){
+			if($field->getName() == $fieldName){
+				return $field;
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * @return array Com\TechDivision\Search\Field\FieldInterface
 	 */
 	public function getFields()

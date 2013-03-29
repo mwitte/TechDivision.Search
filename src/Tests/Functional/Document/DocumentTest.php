@@ -60,6 +60,22 @@ class DocumentTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 	/**
 	 * @depends testGetFieldCountWithFilledDocument
 	 */
+	public function testGetField(){
+		$this->document->addField($this->oneField);
+		$this->assertSame($this->oneField, $this->document->getField($this->oneField->getName()));
+	}
+
+	/**
+	 * @depends testGetFieldCountWithFilledDocument
+	 */
+	public function testGetFieldWithWrongName(){
+		$this->document->addField($this->oneField);
+		$this->assertSame(null, $this->document->getField('wrongName'));
+	}
+
+	/**
+	 * @depends testGetFieldCountWithFilledDocument
+	 */
 	public function testRemoveExistingField(){
 		$this->document->addField($this->oneField);
 		$this->assertSame(true, $this->document->removeField($this->oneField));
