@@ -13,9 +13,6 @@
 	<filter>
 		<whitelist>
 			<directory suffix=".php">src/Classes</directory>
-			<exclude>
-				<file>src/Classes/Com/TechDivision/Search/Provider/Solr/Provider.php</file>
-			</exclude>
 		</whitelist>
 	</filter>
 	<logging>

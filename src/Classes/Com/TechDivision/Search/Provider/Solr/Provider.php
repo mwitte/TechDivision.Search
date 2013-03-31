@@ -43,6 +43,9 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 	 * Gets called after instantiation and dependency injection
 	 *
 	 * @return void
+	 *
+	 * no testing needed \SolrClient should covered
+	 * @codeCoverageIgnore
 	 */
 	public function initializeObject() {
 		// Setup the solr client if didn't set by constructor
@@ -52,14 +55,12 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 			try{
 				$ping = $this->client->ping();
 			}catch (\Exception $e){
-				// @codeCoverageIgnoreStart
 				$message = "Could not connect to solr server with settings: \n";
 				foreach($this->getClientOptions() as $key => $value){
 					$message .= $key . ": ". $value . " \n";
 				}
 				// TODO probably own exceptions?
 				throw new \Exception($message);
-				// @codeCoverageIgnoreEnd
 			}
 		}
 	}
@@ -68,6 +69,9 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 	 *
 	 * @param array $settings
 	 * @return void
+	 *
+	 * no testing needed, flow functionality
+	 * @codeCoverageIgnore
 	 */
 	public function injectSettings(array $settings) {
 		$this->settings = $settings;
@@ -91,6 +95,9 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 			return $this->responseBuilder->createProviderSearchResponse($queryResponse);
 		}catch (\Exception $e){
 			// TODO do something, own Exceptions?
+			if($this->settings['Solr']['Debug']){
+				throw $e;
+			}
 		}
 		return array();
 	}
@@ -109,13 +116,14 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 				$this->client->commit(1, true, true);
 				return $response->success();
 				// TODO Workaround for codeCoverage?
-				// @codeCoverageIgnoreStart
 			}catch (\Exception $e){
 				// TODO throw Exception?
+				if($this->settings['Solr']['Debug']){
+					throw $e;
+				}
 			}
 		}
 		return false;
-		// @codeCoverageIgnoreEnd
 	}
 
 	/**
@@ -132,23 +140,14 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 				$this->client->commit(1, true, true);
 				return $response->success();
 				// TODO Workaround for codeCoverage?
-				// @codeCoverageIgnoreStart
 			}catch (\Exception $e){
 				// TODO throw Exception?
+				if($this->settings['Solr']['Debug']){
+					throw $e;
+				}
 			}
 		}
 		return false;
-		// @codeCoverageIgnoreEnd
-	}
-
-	/**
-	 * @param \Com\TechDivision\Search\Document\DocumentInterface $document
-	 * @return bool
-	 */
-	public function updateDocument(DocumentInterface $document)
-	{
-		// TODO: Implement updateDocument() method.
-		return $this->addDocument($document);
 	}
 
 
@@ -164,12 +163,13 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 			$this->client->commit(1, true, true);
 			return $response->success();
 			// TODO Workaround for codeCoverage?
-			// @codeCoverageIgnoreStart
 		}catch (\Exception $e){
 			// TODO throw Exception?
+			if($this->settings['Solr']['Debug']){
+				throw $e;
+			}
 		}
 		return false;
-		// @codeCoverageIgnoreEnd
 	}
 
 	/**
@@ -182,22 +182,14 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 
 	/**
 	 * @return mixed
+	 *
+	 * no testing needed, flow functionality
+	 * @codeCoverageIgnore
 	 */
 	protected function getClientOptions(){
 		/**
 		 * TODO this configuration should come from setServerSettings() or something
 		 */
 		return $this->settings['Solr']['ServerData'];
-	}
-
-	/**
-	 * @param int $maxSegments
-	 * @param bool $waitFlush
-	 * @param bool $waitSearcher
-	 */
-	public function commit($maxSegments = 1, $waitFlush = true, $waitSearcher = true)
-	{
-		$response = $this->client->commit($maxSegments, $waitFlush, $waitSearcher);
-		return $response->success();
 	}
 }

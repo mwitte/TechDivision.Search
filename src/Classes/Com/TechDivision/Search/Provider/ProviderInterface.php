@@ -19,19 +19,6 @@ interface ProviderInterface
 	public function addDocument(\Com\TechDivision\Search\Document\DocumentInterface $document);
 
 	/**
-	 * @param int $maxSegments
-	 * @param bool $waitFlush
-	 * @param bool $waitSearcher
-	 */
-	public function commit($maxSegments = 0, $waitFlush = true, $waitSearcher = true);
-
-	/**
-	 * @param \Com\TechDivision\Search\Document\DocumentInterface $document
-	 * @return bool
-	 */
-	public function updateDocument(\Com\TechDivision\Search\Document\DocumentInterface $document);
-
-	/**
 	 * @param string $identifier
 	 * @return bool
 	 */

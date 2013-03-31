@@ -5,3 +5,4 @@ Com:
         ServerData:
           hostname: 'localhost'
           port: 8983
+        Debug: false
