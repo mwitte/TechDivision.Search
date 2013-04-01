@@ -1,12 +1,20 @@
 <?php
 namespace Com\TechDivision\Search\Provider\Solr;
 
+/*                                                                        *
+ * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ *                                                                        *
+ * It is free software; you can redistribute it and/or modify it under    *
+ * the terms of the GNU General Public License, either version 3 of the   *
+ * License, or (at your option) any later version.                        *
+ *                                                                        *
+ * Copyright (C) 2013 Matthias Witte                                      *
+ * http://www.matthias-witte.net                                          */
+
 use TYPO3\Flow\Annotations as Flow;
 use \Com\TechDivision\Search\Document\DocumentInterface;
 
 /**
- * This is my great class.
- *
  * @Flow\Scope("singleton")
  */
 class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
@@ -44,7 +52,7 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 	 *
 	 * @return void
 	 *
-	 * no testing needed \SolrClient should covered
+	 * no testing needed \SolrClient should be covered
 	 * @codeCoverageIgnore
 	 */
 	public function initializeObject() {
@@ -52,15 +60,16 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 		if(!$this->client){
 			// create the client instance
 			$this->client = new \SolrClient($this->getClientOptions());
-			try{
-				$ping = $this->client->ping();
-			}catch (\Exception $e){
-				$message = "Could not connect to solr server with settings: \n";
-				foreach($this->getClientOptions() as $key => $value){
-					$message .= $key . ": ". $value . " \n";
+			if($this->settings['Solr']['Debug']){
+				try{
+					$ping = $this->client->ping();
+				}catch (\Exception $e){
+					$message = "Could not connect to solr server with settings: \n";
+					foreach($this->getClientOptions() as $key => $value){
+						$message .= $key . ": ". $value . " \n";
+					}
+					throw new \Exception($message);
 				}
-				// TODO probably own exceptions?
-				throw new \Exception($message);
 			}
 		}
 	}
@@ -82,7 +91,7 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 	 * @param array $fields
 	 * @param int $rows
 	 * @param int $offset
-	 * @return array
+	 * @return array <\Com\TechDivision\Search\Document\DocumentInterface>
 	 */
 	public function searchByString($searchString, array $fields, $rows = 50, $offset = 0)
 	{
@@ -94,7 +103,6 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 			);
 			return $this->responseBuilder->createProviderSearchResponse($queryResponse);
 		}catch (\Exception $e){
-			// TODO do something, own Exceptions?
 			if($this->settings['Solr']['Debug']){
 				throw $e;
 			}
@@ -112,12 +120,12 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 		if($inputDocument){
 			try{
 				$response = $this->client->addDocument($inputDocument, FALSE, 0);
-				// TODO configurable?
-				$this->client->commit(1, true, true);
+				$this->client->commit(
+					$this->settings['Solr']['Commit']['maxSegments'],
+					$this->settings['Solr']['Commit']['waitFlush'],
+					$this->settings['Solr']['Commit']['waitSearcher']);
 				return $response->success();
-				// TODO Workaround for codeCoverage?
 			}catch (\Exception $e){
-				// TODO throw Exception?
 				if($this->settings['Solr']['Debug']){
 					throw $e;
 				}
@@ -136,12 +144,12 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 		if($inputDocuments){
 			try{
 				$response = $this->client->addDocuments($inputDocuments, FALSE, 0);
-				// TODO configurable?
-				$this->client->commit(1, true, true);
+				$this->client->commit(
+					$this->settings['Solr']['Commit']['maxSegments'],
+					$this->settings['Solr']['Commit']['waitFlush'],
+					$this->settings['Solr']['Commit']['waitSearcher']);
 				return $response->success();
-				// TODO Workaround for codeCoverage?
 			}catch (\Exception $e){
-				// TODO throw Exception?
 				if($this->settings['Solr']['Debug']){
 					throw $e;
 				}
@@ -159,12 +167,12 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 	{
 		try{
 			$response = $this->client->deleteById($identifier);
-			// TODO configurable?
-			$this->client->commit(1, true, true);
+			$this->client->commit(
+				$this->settings['Solr']['Commit']['maxSegments'],
+				$this->settings['Solr']['Commit']['waitFlush'],
+				$this->settings['Solr']['Commit']['waitSearcher']);
 			return $response->success();
-			// TODO Workaround for codeCoverage?
 		}catch (\Exception $e){
-			// TODO throw Exception?
 			if($this->settings['Solr']['Debug']){
 				throw $e;
 			}
@@ -187,9 +195,6 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 	 * @codeCoverageIgnore
 	 */
 	protected function getClientOptions(){
-		/**
-		 * TODO this configuration should come from setServerSettings() or something
-		 */
 		return $this->settings['Solr']['ServerData'];
 	}
 }

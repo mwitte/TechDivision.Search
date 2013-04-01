@@ -1,13 +1,16 @@
 <?php
 
 namespace Com\TechDivision\Search\Document;
-/**
- * Created by JetBrains PhpStorm.
- * User: wittem
- * Date: 23.03.13
- * Time: 15:00
- * To change this template use File | Settings | File Templates.
- */
+/*                                                                        *
+ * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ *                                                                        *
+ * It is free software; you can redistribute it and/or modify it under    *
+ * the terms of the GNU General Public License, either version 3 of the   *
+ * License, or (at your option) any later version.                        *
+ *                                                                        *
+ * Copyright (C) 2013 Matthias Witte                                      *
+ * http://www.matthias-witte.net                                          */
+
 class Document implements DocumentInterface
 {
 

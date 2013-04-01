@@ -2,11 +2,23 @@
 
 namespace Com\TechDivision\Search\Document;
 
+/*                                                                        *
+ * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ *                                                                        *
+ * It is free software; you can redistribute it and/or modify it under    *
+ * the terms of the GNU General Public License, either version 3 of the   *
+ * License, or (at your option) any later version.                        *
+ *                                                                        *
+ * Copyright (C) 2013 Matthias Witte                                      *
+ * http://www.matthias-witte.net                                          */
+
 use \Com\TechDivision\Search\Field\SolrFieldFactory;
 
 class SolrDocumentFactory
 {
 	/**
+	 * Creates an array of Documents by an response which implements ArrayAccess
+	 *
 	 * @param \ArrayAccess $response
 	 * @param \Com\TechDivision\Search\Field\SolrFieldFactory $solrFieldFactory
 	 */
