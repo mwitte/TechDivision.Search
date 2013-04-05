@@ -1,9 +1,9 @@
 <?php
 
-namespace Com\TechDivision\Search\Tests\Functional\Provider\Solr;
+namespace TechDivision\Search\Tests\Functional\Provider\Solr;
 
 /*                                                                        *
- * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU General Public License, either version 3 of the   *
@@ -20,17 +20,17 @@ class InputBuilderTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 	static protected $testablePersistenceEnabled = FALSE;
 
 	/**
-	 * @var \Com\TechDivision\Search\Provider\Solr\InputBuilder
+	 * @var \TechDivision\Search\Provider\Solr\InputBuilder
 	 */
 	protected $inputBuilder;
 
 	public function setUp(){
 		parent::setUp();
-		$this->inputBuilder = new \Com\TechDivision\Search\Provider\Solr\InputBuilder();
+		$this->inputBuilder = new \TechDivision\Search\Provider\Solr\InputBuilder();
 	}
 
 	public function testCreateSolrInputDocumentWithEmptyDocument(){
-		$this->assertSame(null, $this->inputBuilder->createSolrInputDocument(new \Com\TechDivision\Search\Document\Document()));
+		$this->assertSame(null, $this->inputBuilder->createSolrInputDocument(new \TechDivision\Search\Document\Document()));
 	}
 }
 ?>

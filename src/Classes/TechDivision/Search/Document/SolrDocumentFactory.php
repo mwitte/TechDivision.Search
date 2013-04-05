@@ -1,9 +1,9 @@
 <?php
 
-namespace Com\TechDivision\Search\Document;
+namespace TechDivision\Search\Document;
 
 /*                                                                        *
- * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU General Public License, either version 3 of the   *
@@ -12,7 +12,7 @@ namespace Com\TechDivision\Search\Document;
  * Copyright (C) 2013 Matthias Witte                                      *
  * http://www.matthias-witte.net                                          */
 
-use \Com\TechDivision\Search\Field\SolrFieldFactory;
+use \TechDivision\Search\Field\SolrFieldFactory;
 
 class SolrDocumentFactory
 {
@@ -20,9 +20,9 @@ class SolrDocumentFactory
 	 * Creates an array of Documents by an response which implements ArrayAccess
 	 *
 	 * @param \ArrayAccess $response
-	 * @param \Com\TechDivision\Search\Field\SolrFieldFactory $solrFieldFactory
+	 * @param \TechDivision\Search\Field\SolrFieldFactory $solrFieldFactory
 	 */
-	public function createFromResponse($response, \Com\TechDivision\Search\Field\SolrFieldFactory $solrFieldFactory){
+	public function createFromResponse($response, \TechDivision\Search\Field\SolrFieldFactory $solrFieldFactory){
 		$documents = array();
 
 		// only if the keys are set

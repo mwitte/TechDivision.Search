@@ -1,9 +1,9 @@
 <?php
 
-namespace Com\TechDivision\Search\Tests\Functional\Document;
+namespace TechDivision\Search\Tests\Functional\Document;
 
 /*                                                                        *
- * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU General Public License, either version 3 of the   *
@@ -20,25 +20,25 @@ class DocumentTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 	static protected $testablePersistenceEnabled = FALSE;
 
 	/**
-	 * @var \Com\TechDivision\Search\Document\Document
+	 * @var \TechDivision\Search\Document\Document
 	 */
 	protected $document;
 
 	/**
-	 * @var \Com\TechDivision\Search\Field\Field
+	 * @var \TechDivision\Search\Field\Field
 	 */
 	protected $oneField;
 
 	/**
-	 * @var \Com\TechDivision\Search\Field\Field
+	 * @var \TechDivision\Search\Field\Field
 	 */
 	protected $otherField;
 
 	public function setUp(){
 		parent::setUp();
-		$this->document = new \Com\TechDivision\Search\Document\Document();
-		$this->oneField = new \Com\TechDivision\Search\Field\Field('id', '12345');
-		$this->otherField = new \Com\TechDivision\Search\Field\Field('id', 'otherField');
+		$this->document = new \TechDivision\Search\Document\Document();
+		$this->oneField = new \TechDivision\Search\Field\Field('id', '12345');
+		$this->otherField = new \TechDivision\Search\Field\Field('id', 'otherField');
 	}
 
 	public function testSetGetBoost(){

@@ -1,9 +1,9 @@
 <?php
 
-namespace Com\TechDivision\Search\Field;
+namespace TechDivision\Search\Field;
 
 /*                                                                        *
- * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU General Public License, either version 3 of the   *
@@ -12,74 +12,35 @@ namespace Com\TechDivision\Search\Field;
  * Copyright (C) 2013 Matthias Witte                                      *
  * http://www.matthias-witte.net                                          */
 
-class Field implements FieldInterface
+interface FieldInterface
 {
-	/**
-	 * @var string
-	 */
-	protected $name;
-
-	/**
-	 * @var string
-	 */
-	protected $value;
-
-	/**
-	 * @var float
-	 */
-	protected $boost;
-
-	public function __construct($name, $value, $boost = null){
-		$this->setName($name);
-		$this->setValue($value);
-		$this->setBoost($boost);
-	}
-
 	/**
 	 * @return string
 	 */
-	public function getName()
-	{
-		return $this->name;
-	}
+	public function getName();
 
 	/**
 	 * @param string $name
 	 */
-	public function setName($name)
-	{
-		$this->name = $name;
-	}
+	public function setName($name);
 
 	/**
 	 * @return string
 	 */
-	public function getValue()
-	{
-		return $this->value;
-	}
+	public function getValue();
 
 	/**
 	 * @param string $value
 	 */
-	public function setValue($value)
-	{
-		$this->value = $value;
-	}
+	public function setValue($value);
 
 	/**
 	 * @return float
 	 */
-	public function getBoost()
-	{
-		return $this->boost;
-	}
+	public function getBoost();
 
 	/**
 	 * @param float $boost
 	 */
-	public function setBoost($boost)
-	{
-		$this->boost = $boost;
-	}
+	public function setBoost($boost);
 }

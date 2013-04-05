@@ -1,9 +1,9 @@
 <?php
 
-namespace Com\TechDivision\Search\Tests\Unit\Field;
+namespace TechDivision\Search\Tests\Unit\Field;
 
 /*                                                                        *
- * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU General Public License, either version 3 of the   *
@@ -12,18 +12,18 @@ namespace Com\TechDivision\Search\Tests\Unit\Field;
  * Copyright (C) 2013 Matthias Witte                                      *
  * http://www.matthias-witte.net                                          */
 
-use \Com\TechDivision\Search\Field\Field;
+use \TechDivision\Search\Field\Field;
 
 class SolrFieldFactoryTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	/**
-	 * @var \Com\TechDivision\Search\Field\SolrFieldFactory
+	 * @var \TechDivision\Search\Field\SolrFieldFactory
 	 */
 	protected $fieldFactory;
 
 	public function setUp(){
 		parent::setUp();
-		$this->fieldFactory = new \Com\TechDivision\Search\Field\SolrFieldFactory();
+		$this->fieldFactory = new \TechDivision\Search\Field\SolrFieldFactory();
 	}
 
 	public function testCreateFieldsWithEmptyDocument(){

@@ -1,9 +1,9 @@
 <?php
 
-namespace Com\TechDivision\Search\Tests\Unit\Provider\Solr;
+namespace TechDivision\Search\Tests\Unit\Provider\Solr;
 
 /*                                                                        *
- * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU General Public License, either version 3 of the   *
@@ -15,19 +15,19 @@ namespace Com\TechDivision\Search\Tests\Unit\Provider\Solr;
 class ResponseBuilderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	/**
-	 * @var \Com\TechDivision\Search\Provider\Solr\ResponseBuilder
+	 * @var \TechDivision\Search\Provider\Solr\ResponseBuilder
 	 */
 	protected $responseBuilder;
 
 	/**
-	 * @var \Com\TechDivision\Search\Document\Document
+	 * @var \TechDivision\Search\Document\Document
 	 */
 	protected $documentMock;
 
 	public function setUp(){
 		parent::setUp();
-		$this->responseBuilder = new \Com\TechDivision\Search\Provider\Solr\ResponseBuilder();
-		$this->documentMock = $this->getMock("\Com\TechDivision\Search\Document\Document", array("getFields", "getBoost"));
+		$this->responseBuilder = new \TechDivision\Search\Provider\Solr\ResponseBuilder();
+		$this->documentMock = $this->getMock("\TechDivision\Search\Document\Document", array("getFields", "getBoost"));
 	}
 
 	public function testCreateProviderSearchResponseWithoutResponse(){

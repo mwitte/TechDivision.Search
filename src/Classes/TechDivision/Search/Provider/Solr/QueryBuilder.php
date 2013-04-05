@@ -1,8 +1,8 @@
 <?php
-namespace Com\TechDivision\Search\Provider\Solr;
+namespace TechDivision\Search\Provider\Solr;
 
 /*                                                                        *
- * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU General Public License, either version 3 of the   *
@@ -36,7 +36,7 @@ class QueryBuilder
 		$query->setStart($offset);
 		$query->setRows($rows);
 		// add the fields to the requested data
-		/** @var $field \Com\TechDivision\Search\Field\Field */
+		/** @var $field \TechDivision\Search\Field\Field */
 		foreach($fields as $field){
 			$query->addField($field->getName());
 		}
@@ -54,7 +54,7 @@ class QueryBuilder
 		$query = '';
 		$iterator = 0;
 		$searchWords = explode(" ", trim($searchString));
-		/** @var $field \Com\TechDivision\Search\Field\Field */
+		/** @var $field \TechDivision\Search\Field\Field */
 		foreach($fields as $field){
 			foreach($searchWords as $searchWord){
 				// after first iteration

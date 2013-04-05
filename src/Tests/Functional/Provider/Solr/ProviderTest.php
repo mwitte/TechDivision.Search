@@ -1,9 +1,9 @@
 <?php
 
-namespace Com\TechDivision\Search\Tests\Functional\Provider\Solr;
+namespace TechDivision\Search\Tests\Functional\Provider\Solr;
 
 /*                                                                        *
- * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU General Public License, either version 3 of the   *
@@ -20,38 +20,38 @@ class ProviderTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 	static protected $testablePersistenceEnabled = FALSE;
 
 	/**
-	 * @var \Com\TechDivision\Search\Provider\Solr\Provider
+	 * @var \TechDivision\Search\Provider\Solr\Provider
 	 */
 	protected $provider;
 
 	/**
-	 * @var \Com\TechDivision\Search\Document\Document
+	 * @var \TechDivision\Search\Document\Document
 	 */
 	protected $filledDocument;
 
 	/**
-	 * @var \Com\TechDivision\Search\Field\Field
+	 * @var \TechDivision\Search\Field\Field
 	 */
 	protected $fieldIdentifier;
 
 	/**
-	 * @var \Com\TechDivision\Search\Field\Field
+	 * @var \TechDivision\Search\Field\Field
 	 */
 	protected $fieldSubject;
 
 	public function setUp(){
 		parent::setUp();
-		$this->provider = $this->objectManager->get('\Com\TechDivision\Search\Provider\Solr\Provider');
-		$this->filledDocument = new \Com\TechDivision\Search\Document\Document();
-		$this->fieldIdentifier = new \Com\TechDivision\Search\Field\Field('id', '12345');
-		$this->fieldSubject = new \Com\TechDivision\Search\Field\Field('subject', 'awesome');
+		$this->provider = $this->objectManager->get('\TechDivision\Search\Provider\Solr\Provider');
+		$this->filledDocument = new \TechDivision\Search\Document\Document();
+		$this->fieldIdentifier = new \TechDivision\Search\Field\Field('id', '12345');
+		$this->fieldSubject = new \TechDivision\Search\Field\Field('subject', 'awesome');
 		$this->filledDocument->addField($this->fieldIdentifier);
 		$this->filledDocument->addField($this->fieldSubject);
 	}
 
 	private function getFilledDocumentWithField($fieldName, $fieldValue){
-		$filledDocument = new \Com\TechDivision\Search\Document\Document();
-		$field = new \Com\TechDivision\Search\Field\Field($fieldName, $fieldValue);
+		$filledDocument = new \TechDivision\Search\Document\Document();
+		$field = new \TechDivision\Search\Field\Field($fieldName, $fieldValue);
 		$filledDocument->addField($field);
 		return $filledDocument;
 	}

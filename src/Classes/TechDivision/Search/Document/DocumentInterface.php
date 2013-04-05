@@ -1,8 +1,8 @@
 <?php
 
-namespace Com\TechDivision\Search\Document;
+namespace TechDivision\Search\Document;
 /*                                                                        *
- * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU General Public License, either version 3 of the   *
@@ -13,9 +13,9 @@ namespace Com\TechDivision\Search\Document;
 interface DocumentInterface
 {
 	/**
-	 * @param \Com\TechDivision\Search\Field\FieldInterface $field
+	 * @param \TechDivision\Search\Field\FieldInterface $field
 	 */
-	public function addField(\Com\TechDivision\Search\Field\FieldInterface $field);
+	public function addField(\TechDivision\Search\Field\FieldInterface $field);
 
 	/**
 	 * @param array $fields
@@ -24,20 +24,20 @@ interface DocumentInterface
 
 	/**
 	 * @param string $fieldName
-	 * @return \Com\TechDivision\Search\Field\FieldInterface|null
+	 * @return \TechDivision\Search\Field\FieldInterface|null
 	 */
 	public function getField($fieldName);
 
 	/**
-	 * @return array with \Com\TechDivision\Search\Field\FieldInterface
+	 * @return array with \TechDivision\Search\Field\FieldInterface
 	 */
 	public function getFields();
 
 	/**
-	 * @param \Com\TechDivision\Search\Field\FieldInterface $field
+	 * @param \TechDivision\Search\Field\FieldInterface $field
 	 * @return bool
 	 */
-	public function removeField(\Com\TechDivision\Search\Field\FieldInterface $field);
+	public function removeField(\TechDivision\Search\Field\FieldInterface $field);
 
 	/**
 	 * @return int

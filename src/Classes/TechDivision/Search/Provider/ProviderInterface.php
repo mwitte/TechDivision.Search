@@ -1,9 +1,9 @@
 <?php
 
-namespace Com\TechDivision\Search\Provider;
+namespace TechDivision\Search\Provider;
 
 /*                                                                        *
- * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU General Public License, either version 3 of the   *
@@ -12,7 +12,7 @@ namespace Com\TechDivision\Search\Provider;
  * Copyright (C) 2013 Matthias Witte                                      *
  * http://www.matthias-witte.net                                          */
 
-use \Com\TechDivision\Search\Document\DocumentInterface;
+use \TechDivision\Search\Document\DocumentInterface;
 
 interface ProviderInterface
 {
@@ -27,10 +27,10 @@ interface ProviderInterface
 	/**
 	 * Adds one single document
 	 *
-	 * @param \Com\TechDivision\Search\Document\DocumentInterface $document
+	 * @param \TechDivision\Search\Document\DocumentInterface $document
 	 * @return bool
 	 */
-	public function addDocument(\Com\TechDivision\Search\Document\DocumentInterface $document);
+	public function addDocument(\TechDivision\Search\Document\DocumentInterface $document);
 
 	/**
 	 * Removes one single document by it's identifier
@@ -47,7 +47,7 @@ interface ProviderInterface
 	 * @param array $fields
 	 * @param int $rows
 	 * @param int $offset
-	 * @return array <\Com\TechDivision\Search\Document\DocumentInterface>
+	 * @return array <\TechDivision\Search\Document\DocumentInterface>
 	 */
 	public function searchByString($searchString, array $fields, $rows = 50, $offset = 0);
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Com\TechDivision\Search\Tests\Unit\Provider\Solr;
+namespace TechDivision\Search\Tests\Unit\Provider\Solr;
 
 /*                                                                        *
- * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU General Public License, either version 3 of the   *
@@ -15,32 +15,32 @@ namespace Com\TechDivision\Search\Tests\Unit\Provider\Solr;
 class InputBuilderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	/**
-	 * @var \Com\TechDivision\Search\Provider\Solr\InputBuilder
+	 * @var \TechDivision\Search\Provider\Solr\InputBuilder
 	 */
 	protected $inputBuilder;
 
 	/**
-	 * @var \Com\TechDivision\Search\Document\Document
+	 * @var \TechDivision\Search\Document\Document
 	 */
 	protected $emptyDocumentMock;
 
 	/**
-	 * @var \Com\TechDivision\Search\Document\Document
+	 * @var \TechDivision\Search\Document\Document
 	 */
 	protected $filledDocumentMock;
 
 	public function setUp(){
 		parent::setUp();
-		$this->inputBuilder = new \Com\TechDivision\Search\Provider\Solr\InputBuilder();
+		$this->inputBuilder = new \TechDivision\Search\Provider\Solr\InputBuilder();
 
 		// create an empty document mock
-		$this->emptyDocumentMock = $this->getMock("\Com\TechDivision\Search\Document\Document", array("getFields", "getBoost"));
+		$this->emptyDocumentMock = $this->getMock("\TechDivision\Search\Document\Document", array("getFields", "getBoost"));
 		$this->emptyDocumentMock->expects($this->any())
 			->method('getFields')
 			->will($this->returnValue(array()));
 
 		// create a filled field mock
-		$fieldMock = $this->getMockBuilder("\Com\TechDivision\Search\Field\Field", array("getName", "getValue", "getBoost"))
+		$fieldMock = $this->getMockBuilder("\TechDivision\Search\Field\Field", array("getName", "getValue", "getBoost"))
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -55,7 +55,7 @@ class InputBuilderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 			->will($this->returnValue(1.5));
 
 		// create an filled document mock with filled field
-		$this->filledDocumentMock = $this->getMock("\Com\TechDivision\Search\Document\Document", array("getFields", "getBoost"));
+		$this->filledDocumentMock = $this->getMock("\TechDivision\Search\Document\Document", array("getFields", "getBoost"));
 		$this->filledDocumentMock->expects($this->any())
 			->method('getFields')
 			->will($this->returnValue(array($fieldMock)));

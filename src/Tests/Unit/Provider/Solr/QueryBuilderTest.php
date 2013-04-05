@@ -1,9 +1,9 @@
 <?php
 
-namespace Com\TechDivision\Search\Tests\Unit\Provider\Solr;
+namespace TechDivision\Search\Tests\Unit\Provider\Solr;
 
 /*                                                                        *
- * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU General Public License, either version 3 of the   *
@@ -15,7 +15,7 @@ namespace Com\TechDivision\Search\Tests\Unit\Provider\Solr;
 class QueryBuilderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	/**
-	 * @var \Com\TechDivision\Search\Provider\Solr\QueryBuilder
+	 * @var \TechDivision\Search\Provider\Solr\QueryBuilder
 	 */
 	protected $queryBuilder;
 
@@ -26,7 +26,7 @@ class QueryBuilderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	public function setUp(){
 		parent::setUp();
-		$this->queryBuilder = new \Com\TechDivision\Search\Provider\Solr\QueryBuilder();
+		$this->queryBuilder = new \TechDivision\Search\Provider\Solr\QueryBuilder();
 		$this->query = new \SolrQuery();
 		$this->query->setRows(50);
 		$this->query->setStart(0);
@@ -46,7 +46,7 @@ class QueryBuilderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 	public function testBuildQueryWithOneField(){
 		$this->query->addField('name');
 		$this->query->setQuery('name:"lookingFor"');
-		$field = new \Com\TechDivision\Search\Field\Field('name', 'value');
+		$field = new \TechDivision\Search\Field\Field('name', 'value');
 		// get the similar queryObject
 		$similarQuery = $this->queryBuilder->buildQuery('lookingFor', array($field), 50, 0);
 		// the queryString should be the same
@@ -60,8 +60,8 @@ class QueryBuilderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 		$this->query->addField('name');
 		$this->query->addField('surname');
 		$this->query->setQuery('name:"lookingFor" OR surname:"lookingFor"');
-		$fieldOne = new \Com\TechDivision\Search\Field\Field('name', 'value');
-		$fieldTwo = new \Com\TechDivision\Search\Field\Field('surname', 'value');
+		$fieldOne = new \TechDivision\Search\Field\Field('name', 'value');
+		$fieldTwo = new \TechDivision\Search\Field\Field('surname', 'value');
 
 		$similarQuery = $this->queryBuilder->buildQuery('lookingFor', array($fieldOne, $fieldTwo), 50, 0);
 

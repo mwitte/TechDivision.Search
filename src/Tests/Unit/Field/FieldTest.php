@@ -1,9 +1,9 @@
 <?php
 
-namespace Com\TechDivision\Search\Tests\Unit\Field;
+namespace TechDivision\Search\Tests\Unit\Field;
 
 /*                                                                        *
- * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU General Public License, either version 3 of the   *
@@ -15,13 +15,13 @@ namespace Com\TechDivision\Search\Tests\Unit\Field;
 class FieldTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	/**
-	 * @var \Com\TechDivision\Search\Field\Field
+	 * @var \TechDivision\Search\Field\Field
 	 */
 	protected $field;
 
 	public function setUp(){
 		parent::setUp();
-		$this->field = new \Com\TechDivision\Search\Field\Field('initName', 'initValue', 0);
+		$this->field = new \TechDivision\Search\Field\Field('initName', 'initValue', 0);
 	}
 
 	public function testSetGetNameWithString(){

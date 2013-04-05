@@ -1,9 +1,9 @@
 <?php
 
-namespace Com\TechDivision\Search\Tests\Functional\Provider\Solr;
+namespace TechDivision\Search\Tests\Functional\Provider\Solr;
 
 /*                                                                        *
- * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU General Public License, either version 3 of the   *
@@ -20,13 +20,13 @@ class ResponseBuilderTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 	static protected $testablePersistenceEnabled = FALSE;
 
 	/**
-	 * @var \Com\TechDivision\Search\Provider\Solr\ResponseBuilder
+	 * @var \TechDivision\Search\Provider\Solr\ResponseBuilder
 	 */
 	protected $responseBuilder;
 
 	public function setUp(){
 		parent::setUp();
-		$this->responseBuilder = new \Com\TechDivision\Search\Provider\Solr\ResponseBuilder();
+		$this->responseBuilder = new \TechDivision\Search\Provider\Solr\ResponseBuilder();
 	}
 
 	public function testCreateProviderSearchResponseWithEmptyResponse(){

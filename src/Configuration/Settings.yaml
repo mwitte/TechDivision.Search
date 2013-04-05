@@ -1,17 +1,17 @@
-Com:
-  TechDivision:
-    Search:
-      # Config for solr backend
-      Solr:
-        # Solr server configuration
-        ServerData:
-          hostname: 'localhost'
-          port: 8983
-        # Debugmode enables an initial ping to the solr server to check if it's available
-        # If debug mode is disabled no Exceptions will be thrown
-        Debug: false
-        # Solr settings for committing
-        Commit:
-          maxSegments: 1
-          waitFlush: true
-          waitSearcher: true
+
+TechDivision:
+  Search:
+    # Config for solr backend
+    Solr:
+      # Solr server configuration
+      ServerData:
+        hostname: 'localhost'
+        port: 8983
+      # Debugmode enables an initial ping to the solr server to check if it's available
+      # If debug mode is disabled no Exceptions will be thrown
+      Debug: false
+      # Solr settings for committing
+      Commit:
+        maxSegments: 1
+        waitFlush: true
+        waitSearcher: true

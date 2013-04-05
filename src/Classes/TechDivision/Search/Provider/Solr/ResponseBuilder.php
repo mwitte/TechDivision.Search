@@ -1,8 +1,8 @@
 <?php
-namespace Com\TechDivision\Search\Provider\Solr;
+namespace TechDivision\Search\Provider\Solr;
 
 /*                                                                        *
- * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU General Public License, either version 3 of the   *
@@ -25,8 +25,8 @@ class ResponseBuilder
 	 */
 	public function createProviderSearchResponse(\SolrQueryResponse $rawResponse){
 		// no singletons because of UnitTesting
-		$documentFactory = new \Com\TechDivision\Search\Document\SolrDocumentFactory();
-		$fieldFactory = new \Com\TechDivision\Search\Field\SolrFieldFactory();
+		$documentFactory = new \TechDivision\Search\Document\SolrDocumentFactory();
+		$fieldFactory = new \TechDivision\Search\Field\SolrFieldFactory();
 		$response = $rawResponse->getResponse();
 		if($response){
 			return $documentFactory->createFromResponse($response, $fieldFactory);

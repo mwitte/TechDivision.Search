@@ -1,8 +1,8 @@
-=======================
-Com.TechDivision.Search
-=======================
+===================
+TechDivision.Search
+===================
 
-The TechDivision.Search package provides an interface for the Com.TechDivision.Neos.Search package.
+The TechDivision.Search package provides an interface for the TechDivision.Neos.Search package.
 The default backend uses Apache Solr. This Solr implementation uses the php Solr extension:
 
 http://www.php.net/manual/en/book.solr.php
@@ -15,10 +15,10 @@ Add other search backend
 The search backend is completely convertible. For adding an other search backends(mysql, OpenSearchServer etc.)
 simply implement the
 
-\Com\TechDivision\Search\Provider\ProviderInterface
+\TechDivision\Search\Provider\ProviderInterface
 
-in your package. For using your own Provider with for example the Com.TechDivision.Neos.Search package look into
-the documentation of Com.TechDivision.Neos.Search package.
+in your package. For using your own Provider with for example the TechDivision.Neos.Search package look into
+the documentation of TechDivision.Neos.Search package.
 
 
 Design decisions
@@ -33,9 +33,9 @@ concerns" so there are many small classes with small functions.
 Testing
 -------
 
-The Com.TechDivision.Search is 100% test covered by unit and functional tests. There are only three methods in the
+The TechDivision.Search is 100% test covered by unit and functional tests. There are only three methods in the
 
-Com\TechDivision\Search\Provider\Solr\Provider
+TechDivision\Search\Provider\Solr\Provider
 
 Two of this three methods are TYPO3 Flow concerned and one initializes the Solr client which should be covered by
 the developers of the solr php extension.
@@ -52,7 +52,7 @@ Until now this is a non-corporate project. I chose this namespace to participate
 Licence
 -------
 
-This belongs to the TYPO3 Flow package "Com.TechDivision.Search"
+This belongs to the TYPO3 Flow package "TechDivision.Search"
 
 It is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License,
 either version 3 of the License, or (at your option) any later version.

@@ -1,8 +1,8 @@
 <?php
-namespace Com\TechDivision\Search\Provider\Solr;
+namespace TechDivision\Search\Provider\Solr;
 
 /*                                                                        *
- * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU General Public License, either version 3 of the   *
@@ -12,12 +12,12 @@ namespace Com\TechDivision\Search\Provider\Solr;
  * http://www.matthias-witte.net                                          */
 
 use TYPO3\Flow\Annotations as Flow;
-use \Com\TechDivision\Search\Document\DocumentInterface;
+use \TechDivision\Search\Document\DocumentInterface;
 
 /**
  * @Flow\Scope("singleton")
  */
-class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
+class Provider implements \TechDivision\Search\Provider\ProviderInterface
 {
 	/**
 	 * @var \SolrClient
@@ -30,19 +30,19 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 	protected $settings;
 
 	/**
-	 * @var \Com\TechDivision\Search\Provider\Solr\QueryBuilder
+	 * @var \TechDivision\Search\Provider\Solr\QueryBuilder
 	 * @FLOW\Inject
 	 */
 	protected $queryBuilder;
 
 	/**
-	 * @var \Com\TechDivision\Search\Provider\Solr\ResponseBuilder
+	 * @var \TechDivision\Search\Provider\Solr\ResponseBuilder
 	 * @FLOW\Inject
 	 */
 	protected $responseBuilder;
 
 	/**
-	 * @var \Com\TechDivision\Search\Provider\Solr\InputBuilder
+	 * @var \TechDivision\Search\Provider\Solr\InputBuilder
 	 * @FLOW\Inject
 	 */
 	protected $inputBuilder;
@@ -91,7 +91,7 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 	 * @param array $fields
 	 * @param int $rows
 	 * @param int $offset
-	 * @return array <\Com\TechDivision\Search\Document\DocumentInterface>
+	 * @return array <\TechDivision\Search\Document\DocumentInterface>
 	 */
 	public function searchByString($searchString, array $fields, $rows = 50, $offset = 0)
 	{
@@ -111,7 +111,7 @@ class Provider implements \Com\TechDivision\Search\Provider\ProviderInterface
 	}
 
 	/**
-	 * @param \Com\TechDivision\Search\Document\DocumentInterface $document
+	 * @param \TechDivision\Search\Document\DocumentInterface $document
 	 * @return bool
 	 */
 	public function addDocument(DocumentInterface $document)

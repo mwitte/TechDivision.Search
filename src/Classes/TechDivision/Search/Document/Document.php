@@ -1,8 +1,8 @@
 <?php
 
-namespace Com\TechDivision\Search\Document;
+namespace TechDivision\Search\Document;
 /*                                                                        *
- * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU General Public License, either version 3 of the   *
@@ -25,9 +25,9 @@ class Document implements DocumentInterface
 	protected $boost = null;
 
 	/**
-	 * @param \Com\TechDivision\Search\Field\FieldInterface $field
+	 * @param \TechDivision\Search\Field\FieldInterface $field
 	 */
-	public function addField(\Com\TechDivision\Search\Field\FieldInterface $field)
+	public function addField(\TechDivision\Search\Field\FieldInterface $field)
 	{
 		$this->fields[] = $field;
 	}
@@ -42,10 +42,10 @@ class Document implements DocumentInterface
 
 	/**
 	 * @param string $fieldName
-	 * @return \Com\TechDivision\Search\Field\FieldInterface|null
+	 * @return \TechDivision\Search\Field\FieldInterface|null
 	 */
 	public function getField($fieldName){
-		/** @var $field \Com\TechDivision\Search\Field\FieldInterface */
+		/** @var $field \TechDivision\Search\Field\FieldInterface */
 		foreach($this->fields as $field){
 			if($field->getName() == $fieldName){
 				return $field;
@@ -55,7 +55,7 @@ class Document implements DocumentInterface
 	}
 
 	/**
-	 * @return array Com\TechDivision\Search\Field\FieldInterface
+	 * @return array TechDivision\Search\Field\FieldInterface
 	 */
 	public function getFields()
 	{
@@ -63,10 +63,10 @@ class Document implements DocumentInterface
 	}
 
 	/**
-	 * @param \Com\TechDivision\Search\Field\FieldInterface $field
+	 * @param \TechDivision\Search\Field\FieldInterface $field
 	 * @return bool
 	 */
-	public function removeField(\Com\TechDivision\Search\Field\FieldInterface $field)
+	public function removeField(\TechDivision\Search\Field\FieldInterface $field)
 	{
 		// find key of element
 		$key = array_search($field, $this->fields, true);

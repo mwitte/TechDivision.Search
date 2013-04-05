@@ -1,4 +1,4 @@
-This file is part of Com.TechDivision.Search.
+This file is part of TechDivision.Search.
 
 Com.TechDivision.Search provides a interface to a search backend.
 Copyright (C) 2013 Matthias Witte

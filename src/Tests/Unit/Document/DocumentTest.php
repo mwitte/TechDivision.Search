@@ -1,9 +1,9 @@
 <?php
 
-namespace Com\TechDivision\Search\Tests\Unit\Field;
+namespace TechDivision\Search\Tests\Unit\Field;
 
 /*                                                                        *
- * This belongs to the TYPO3 Flow package "Com.TechDivision.Search"       *
+ * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU General Public License, either version 3 of the   *
@@ -15,25 +15,25 @@ namespace Com\TechDivision\Search\Tests\Unit\Field;
 class DocumentTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	/**
-	 * @var \Com\TechDivision\Search\Document\Document
+	 * @var \TechDivision\Search\Document\Document
 	 */
 	protected $document;
 
 	/**
-	 * @var \Com\TechDivision\Search\Field\Field
+	 * @var \TechDivision\Search\Field\Field
 	 */
 	protected $fieldOne;
 
 	/**
-	 * @var \Com\TechDivision\Search\Field\Field
+	 * @var \TechDivision\Search\Field\Field
 	 */
 	protected $fieldTwo;
 
 	public function setUp(){
 		parent::setUp();
-		$this->document = new \Com\TechDivision\Search\Document\Document();
-		$this->fieldOne = new \Com\TechDivision\Search\Field\Field('name', 'value');
-		$this->fieldTwo = new \Com\TechDivision\Search\Field\Field('otherName', 'otherValue');
+		$this->document = new \TechDivision\Search\Document\Document();
+		$this->fieldOne = new \TechDivision\Search\Field\Field('name', 'value');
+		$this->fieldTwo = new \TechDivision\Search\Field\Field('otherName', 'otherValue');
 	}
 
 	public function testAddAndGetField(){
