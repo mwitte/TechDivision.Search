@@ -56,6 +56,7 @@ class ResponseBuilderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 		$solrResponseMock->expects($this->any())
 			->method("getResponse")
 			->will($this->returnValue($rawResponse));
+		$this->inject($this->responseBuilder, 'documentFactory', new \TechDivision\Search\Provider\Solr\Extension\Factories\DocumentFactory());
 		$this->assertSame(array(), $this->responseBuilder->createProviderSearchResponse($solrResponseMock));
 	}
 }

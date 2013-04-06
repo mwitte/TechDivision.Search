@@ -16,7 +16,7 @@ This implementation uses the solr php extension:
 http://www.php.net/manual/en/book.solr.php
 http://pecl.php.net/package/solr
 
-On this date the php solr extension works only with Apache Solr 3.6.x !
+Currently the php solr extension works only with Apache Solr 3.6.x !
 
 Add other search backend
 ------------------------

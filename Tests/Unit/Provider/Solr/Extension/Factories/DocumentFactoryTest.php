@@ -77,8 +77,8 @@ class DocumentFactoryTest extends \TYPO3\Flow\Tests\UnitTestCase {
 		);
 		$document = new \TechDivision\Search\Document\Document();
 		$document->addField(new \TechDivision\Search\Field\Field('fieldName', 'fieldValue'));
-
-		$this->assertEquals(array($document), $this->documentFactory->createFromResponse($incompleteResponse, new \TechDivision\Search\Provider\Solr\Extension\Factories\FieldFactory()));
+		$this->inject($this->documentFactory, 'fieldFactory', new \TechDivision\Search\Provider\Solr\Extension\Factories\FieldFactory());
+		$this->assertEquals(array($document), $this->documentFactory->createFromResponse($incompleteResponse));
 	}
 }
 ?>

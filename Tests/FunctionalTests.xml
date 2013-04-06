@@ -1,10 +1,12 @@
 <?xml version="1.0"?>
-<phpunit strict="true"
-		bootstrap="/var/www/flow/TYPO3-Neos-1.0-dev/Build/BuildEssentials/PhpUnit/FunctionalTestBootstrap.php"
+<phpunit
+		strict="true"
 		convertErrorsToExceptions="true"
 		convertNoticesToExceptions="true"
 		convertWarningsToExceptions="true"
-		timeoutForSmallTests="0">
+		timeoutForSmallTests="0"
+		bootstrap="/var/www/flow/TYPO3-Neos-1.0-dev/Build/BuildEssentials/PhpUnit/FunctionalTestBootstrap.php">
+		<!-- Fully qualified path to the FunctionalTestBootstrap.php of your instance -->
 	<testsuites>
 		<testsuite name="All tests">
 			<directory>Functional</directory>
@@ -12,6 +14,7 @@
 	</testsuites>
 	<filter>
 		<whitelist>
+			<!-- Fully qualified path to the Dir Data/Temporary/Testing/Cache/Code/Flow_Object_Classes/ of your instance -->
 			<directory prefix="TechDivision_Search">/Volumes/www/flow/TYPO3-Neos-1.0-dev/Data/Temporary/Testing/Cache/Code/Flow_Object_Classes/</directory>
 		</whitelist>
 	</filter>

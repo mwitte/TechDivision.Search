@@ -128,7 +128,7 @@ class ProviderTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 		$clientMock->expects($this->any())->method('deleteById')->will($this->throwException(new \Exception()));
 		$this->inject($this->provider, 'client', $clientMock);
 
-		$this->assertSame(false, $this->provider->removeDocumentByIdentifier('12345'));
+		$this->assertSame(false, $this->provider->removeDocumentByField(new \TechDivision\Search\Field\Field('id', '12345')));
 	}
 
 	/**
@@ -144,7 +144,7 @@ class ProviderTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 		 * own try catch is better solution
 		 */
 		try {
-			$this->provider->removeDocumentByIdentifier('12345');
+			$this->provider->removeDocumentByField(new \TechDivision\Search\Field\Field('id', '12345'));
 		}catch (\Exception $e){
 
 		}
@@ -155,14 +155,14 @@ class ProviderTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 	 * @depends testAddDocument
 	 */
 	public function testDeleteExistingDocumentByIdentifier(){
-		$this->assertSame(true, $this->provider->removeDocumentByIdentifier('12345'));
+		$this->assertSame(true, $this->provider->removeDocumentByField(new \TechDivision\Search\Field\Field('id', '12345')));
 	}
 
 	/**
 	 * @depends testDeleteExistingDocumentByIdentifier
 	 */
 	public function testDeleteNotExistingDocumentByIdentifier(){
-		$this->assertSame(true, $this->provider->removeDocumentByIdentifier('12345'));
+		$this->assertSame(true, $this->provider->removeDocumentByField(new \TechDivision\Search\Field\Field('id', '12345')));
 	}
 
 	/**

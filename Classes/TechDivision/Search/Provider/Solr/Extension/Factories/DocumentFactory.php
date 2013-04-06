@@ -12,15 +12,26 @@ namespace TechDivision\Search\Provider\Solr\Extension\Factories;
  * Copyright (C) 2013 Matthias Witte                                      *
  * http://www.matthias-witte.net                                          */
 
+use TYPO3\Flow\Annotations as Flow;
+
+/**
+ * @Flow\Scope("singleton")
+ */
 class DocumentFactory
 {
+
+	/**
+	 * @var \TechDivision\Search\Provider\Solr\Extension\Factories\FieldFactory
+	 * @Flow\Inject
+	 */
+	protected $fieldFactory;
+
 	/**
 	 * Creates an array of Documents by an response which implements ArrayAccess
 	 *
 	 * @param \ArrayAccess $response
-	 * @param \TechDivision\Search\Provider\Solr\Extension\Factories\FieldFactory $solrFieldFactory
 	 */
-	public function createFromResponse($response, \TechDivision\Search\Provider\Solr\Extension\Factories\FieldFactory $solrFieldFactory){
+	public function createFromResponse($response){
 		$documents = array();
 
 		// only if the keys are set
@@ -29,7 +40,7 @@ class DocumentFactory
 			foreach($response['response']['docs'] as $responseDocument){
 				$solrDocument = new \TechDivision\Search\Document\Document();
 				// create and set the fields to the document
-				$solrDocument->setFields($solrFieldFactory->createFieldsWith($responseDocument));
+				$solrDocument->setFields($this->fieldFactory->createFieldsWith($responseDocument));
 				$documents[] = $solrDocument;
 			}
 		}

@@ -12,6 +12,11 @@ namespace TechDivision\Search\Provider\Solr\Extension\Factories;
  * Copyright (C) 2013 Matthias Witte                                      *
  * http://www.matthias-witte.net                                          */
 
+use TYPO3\Flow\Annotations as Flow;
+
+/**
+ * @Flow\Scope("singleton")
+ */
 class FieldFactory
 {
 	/**

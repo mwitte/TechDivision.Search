@@ -18,6 +18,13 @@ use TYPO3\Flow\Annotations as Flow;
  */
 class ResponseBuilder
 {
+
+	/**
+	 * @var \TechDivision\Search\Provider\Solr\Extension\Factories\DocumentFactory
+	 * @Flow\Inject
+	 */
+	protected $documentFactory;
+
 	/**
 	 * Creates an array of documents by the given \SolrQueryResponse
 	 *
@@ -25,12 +32,9 @@ class ResponseBuilder
 	 * @return array
 	 */
 	public function createProviderSearchResponse(\SolrQueryResponse $rawResponse){
-		// no singletons because of UnitTesting
-		$documentFactory = new \TechDivision\Search\Provider\Solr\Extension\Factories\DocumentFactory();
-		$fieldFactory = new \TechDivision\Search\Provider\Solr\Extension\Factories\FieldFactory();
 		$response = $rawResponse->getResponse();
 		if($response){
-			return $documentFactory->createFromResponse($response, $fieldFactory);
+			return $this->documentFactory->createFromResponse($response);
 		}
 		return array();
 	}
