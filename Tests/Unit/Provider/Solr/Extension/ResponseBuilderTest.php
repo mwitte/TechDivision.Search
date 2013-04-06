@@ -1,6 +1,6 @@
 <?php
 
-namespace TechDivision\Search\Tests\Unit\Provider\Solr;
+namespace TechDivision\Search\Tests\Unit\Provider\Solr\Extension;
 
 /*                                                                        *
  * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
@@ -15,7 +15,7 @@ namespace TechDivision\Search\Tests\Unit\Provider\Solr;
 class ResponseBuilderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	/**
-	 * @var \TechDivision\Search\Provider\Solr\ResponseBuilder
+	 * @var \TechDivision\Search\Provider\Solr\Extension\ResponseBuilder
 	 */
 	protected $responseBuilder;
 
@@ -26,7 +26,7 @@ class ResponseBuilderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	public function setUp(){
 		parent::setUp();
-		$this->responseBuilder = new \TechDivision\Search\Provider\Solr\ResponseBuilder();
+		$this->responseBuilder = new \TechDivision\Search\Provider\Solr\Extension\ResponseBuilder();
 		$this->documentMock = $this->getMock("\TechDivision\Search\Document\Document", array("getFields", "getBoost"));
 	}
 

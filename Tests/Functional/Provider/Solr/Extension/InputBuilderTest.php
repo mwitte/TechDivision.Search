@@ -1,6 +1,6 @@
 <?php
 
-namespace TechDivision\Search\Tests\Functional\Provider\Solr;
+namespace TechDivision\Search\Tests\Functional\Provider\Solr\Extension;
 
 /*                                                                        *
  * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
@@ -12,7 +12,7 @@ namespace TechDivision\Search\Tests\Functional\Provider\Solr;
  * Copyright (C) 2013 Matthias Witte                                      *
  * http://www.matthias-witte.net                                          */
 
-class ResponseBuilderTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
+class InputBuilderTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 
 	/**
 	 * @var boolean
@@ -20,17 +20,17 @@ class ResponseBuilderTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 	static protected $testablePersistenceEnabled = FALSE;
 
 	/**
-	 * @var \TechDivision\Search\Provider\Solr\ResponseBuilder
+	 * @var \TechDivision\Search\Provider\Solr\Extension\InputBuilder
 	 */
-	protected $responseBuilder;
+	protected $inputBuilder;
 
 	public function setUp(){
 		parent::setUp();
-		$this->responseBuilder = new \TechDivision\Search\Provider\Solr\ResponseBuilder();
+		$this->inputBuilder = new \TechDivision\Search\Provider\Solr\Extension\InputBuilder();
 	}
 
-	public function testCreateProviderSearchResponseWithEmptyResponse(){
-		$this->assertSame(array(), $this->responseBuilder->createProviderSearchResponse(new \SolrQueryResponse()));
+	public function testCreateSolrInputDocumentWithEmptyDocument(){
+		$this->assertSame(null, $this->inputBuilder->createSolrInputDocument(new \TechDivision\Search\Document\Document()));
 	}
 }
 ?>

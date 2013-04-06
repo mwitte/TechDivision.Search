@@ -1,0 +1,3 @@
+# change the implementation for interfaces by configuration:
+TechDivision\Search\Provider\Solr\Rest\ClientInterface:
+  className: TechDivision\Search\Provider\Solr\Rest\CurlClient

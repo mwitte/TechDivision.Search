@@ -1,6 +1,6 @@
 <?php
 
-namespace TechDivision\Search\Tests\Unit\Field;
+namespace TechDivision\Search\Tests\Unit\Provider\Solr\Extension\Factories;
 
 /*                                                                        *
  * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
@@ -14,16 +14,16 @@ namespace TechDivision\Search\Tests\Unit\Field;
 
 use \TechDivision\Search\Field\Field;
 
-class SolrFieldFactoryTest extends \TYPO3\Flow\Tests\UnitTestCase {
+class FieldFactoryTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	/**
-	 * @var \TechDivision\Search\Field\SolrFieldFactory
+	 * @var \TechDivision\Search\Provider\Solr\Extension\Factories\FieldFactory
 	 */
 	protected $fieldFactory;
 
 	public function setUp(){
 		parent::setUp();
-		$this->fieldFactory = new \TechDivision\Search\Field\SolrFieldFactory();
+		$this->fieldFactory = new \TechDivision\Search\Provider\Solr\Extension\Factories\FieldFactory();
 	}
 
 	public function testCreateFieldsWithEmptyDocument(){

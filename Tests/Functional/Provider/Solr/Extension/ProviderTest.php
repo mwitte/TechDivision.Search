@@ -1,6 +1,6 @@
 <?php
 
-namespace TechDivision\Search\Tests\Functional\Provider\Solr;
+namespace TechDivision\Search\Tests\Functional\Provider\Solr\Extension;
 
 /*                                                                        *
  * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
@@ -20,7 +20,7 @@ class ProviderTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 	static protected $testablePersistenceEnabled = FALSE;
 
 	/**
-	 * @var \TechDivision\Search\Provider\Solr\Provider
+	 * @var \TechDivision\Search\Provider\Solr\Extension\Provider
 	 */
 	protected $provider;
 
@@ -41,7 +41,7 @@ class ProviderTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 
 	public function setUp(){
 		parent::setUp();
-		$this->provider = $this->objectManager->get('\TechDivision\Search\Provider\Solr\Provider');
+		$this->provider = $this->objectManager->get('\TechDivision\Search\Provider\Solr\Extension\Provider');
 		$this->filledDocument = new \TechDivision\Search\Document\Document();
 		$this->fieldIdentifier = new \TechDivision\Search\Field\Field('id', '12345');
 		$this->fieldSubject = new \TechDivision\Search\Field\Field('subject', 'awesome');

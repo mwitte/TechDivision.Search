@@ -1,6 +1,6 @@
 <?php
 
-namespace TechDivision\Search\Tests\Functional\Provider\Solr;
+namespace TechDivision\Search\Provider\Solr\Extension\Factories;
 
 /*                                                                        *
  * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
@@ -12,25 +12,20 @@ namespace TechDivision\Search\Tests\Functional\Provider\Solr;
  * Copyright (C) 2013 Matthias Witte                                      *
  * http://www.matthias-witte.net                                          */
 
-class InputBuilderTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
-
+class FieldFactory
+{
 	/**
-	 * @var boolean
+	 * Creates an array of Fields by given array of Documents
+	 *
+	 * @param array $documentArray
+	 * @return array contains
 	 */
-	static protected $testablePersistenceEnabled = FALSE;
-
-	/**
-	 * @var \TechDivision\Search\Provider\Solr\InputBuilder
-	 */
-	protected $inputBuilder;
-
-	public function setUp(){
-		parent::setUp();
-		$this->inputBuilder = new \TechDivision\Search\Provider\Solr\InputBuilder();
-	}
-
-	public function testCreateSolrInputDocumentWithEmptyDocument(){
-		$this->assertSame(null, $this->inputBuilder->createSolrInputDocument(new \TechDivision\Search\Document\Document()));
+	public function createFieldsWith($documentArray){
+		$fields = array();
+		// create one field for each field in the response
+		foreach($documentArray as $fieldName => $fieldValue){
+			$fields[] = new \TechDivision\Search\Field\Field($fieldName, $fieldValue);
+		}
+		return $fields;
 	}
 }
-?>

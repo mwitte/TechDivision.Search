@@ -1,21 +1,30 @@
-===================
 TechDivision.Search
 ===================
 
-The TechDivision.Search package provides an interface for the TechDivision.Neos.Search package.
-The default backend uses Apache Solr. This Solr implementation uses the php Solr extension:
+The TechDivision.Search package provides an interface for the TechDivision.Neos.Search package. There are two different
+implementations provided:
+
+### Solr Rest
+
+This implementation uses the default php curl extension. In most cases you should use this provider. It works with
+Apache Solr 4.x and 3.6.x
+
+### Solr Extension
+
+This implementation uses the solr php extension:
 
 http://www.php.net/manual/en/book.solr.php
 http://pecl.php.net/package/solr
 
+On this date the php solr extension works only with Apache Solr 3.6.x !
 
 Add other search backend
 ------------------------
 
-The search backend is completely convertible. For adding an other search backends(mysql, OpenSearchServer etc.)
-simply implement the
+The search backend is completely convertible. For adding a search backend(mysql, OpenSearchServer etc.) simply implement
+the
 
-\TechDivision\Search\Provider\ProviderInterface
+	\TechDivision\Search\Provider\ProviderInterface
 
 in your package. For using your own Provider with for example the TechDivision.Neos.Search package look into
 the documentation of TechDivision.Neos.Search package.
@@ -27,26 +36,43 @@ Design decisions
 I created a dedicated "search" package to get the opportunity to change the backend logic to another logic by
 configuration. With this (for basic requirements) generic documents and fields are various backend solutions possible.
 This hole package was created by test-driven-development with 100% code coverage. One main paradigm was "separation of
-concerns" so there are many small classes with small functions.
+concerns" so there are many small classes with small methods.
 
 
 Testing
 -------
 
-The TechDivision.Search is 100% test covered by unit and functional tests. There are only three methods in the
+The TechDivision.Search is 100% test covered by unit and functional tests. Uncovered:
 
-TechDivision\Search\Provider\Solr\Provider
+The method "initializeObject" in the class
 
-Two of this three methods are TYPO3 Flow concerned and one initializes the Solr client which should be covered by
-the developers of the solr php extension.
+	TechDivision\Search\Provider\Solr\Extension\Provider
 
-For the functional tests a solr server is required.
+It initializes the php solr extension's solr client which should be covered by the developers of the solr php extension.
+
+The class
+
+	TechDivision\Search\Provider\Solr\Rest\CurlClient
+
+It initializes the php curl extension. There is really few logic. Probably i'll find a solution to test is in future.
+
+There are some other methods uncovered, these methods contain no logic and are only for dependency injection by the
+TYPO3 Flow framework. These should be covered by the framework an are ignored for code coverage as well.
+
+For the functional tests is a solr server is required! In my opinion are unit tests significantly more useful then
+functional tests.
+
+The functional tests are currently not suitable, the last changes in the TYPO3 Flow framework made it nearly impossible
+to cover the code with 100%. There is already an issue for that in forge to fix it.
+
+https://forge.typo3.org/issues/46974
 
 
 Why this namespace?
 -------------------
 
-Until now this is a non-corporate project. I chose this namespace to participate at a company internal contest.
+Until now this is a non-corporate project i made in my leisure time. I chose this namespace to participate at a company
+internal contest.
 
 
 Licence

@@ -1,6 +1,6 @@
 <?php
 
-namespace TechDivision\Search\Tests\Unit\Provider\Solr;
+namespace TechDivision\Search\Tests\Unit\Provider\Solr\Extension;
 
 /*                                                                        *
  * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
@@ -15,7 +15,7 @@ namespace TechDivision\Search\Tests\Unit\Provider\Solr;
 class ProviderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	/**
-	 * @var \TechDivision\Search\Provider\Solr\Provider
+	 * @var \TechDivision\Search\Provider\Solr\Extension\Provider
 	 */
 	protected $provider;
 
@@ -26,14 +26,14 @@ class ProviderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	public function setUp(){
 		parent::setUp();
-		$this->provider = new \TechDivision\Search\Provider\Solr\Provider();
+		$this->provider = new \TechDivision\Search\Provider\Solr\Extension\Provider();
 
-		$queryBuilderMock = $this->getMock('\TechDivision\Search\Provider\Solr\QueryBuilder', array('buildQuery'));
+		$queryBuilderMock = $this->getMock('\TechDivision\Search\Provider\Solr\Extension\QueryBuilder', array('buildQuery'));
 		$solrQueryMock = $this->getMock('\SolrQuery', array());
 		$queryBuilderMock->expects($this->any())->method('buildQuery')->will($this->returnValue($solrQueryMock));
 		$this->inject($this->provider, 'queryBuilder', $queryBuilderMock);
 
-		$responseBuilder = $this->getMock('\TechDivision\Search\Provider\Solr\ResponseBuilder', array('createProviderSearchResponse'));
+		$responseBuilder = $this->getMock('\TechDivision\Search\Provider\Solr\Extension\ResponseBuilder', array('createProviderSearchResponse'));
 		$responseBuilder->expects($this->any())->method('createProviderSearchResponse')->will($this->returnValue(array()));
 		$this->inject($this->provider, 'responseBuilder', $responseBuilder);
 	}
@@ -89,7 +89,7 @@ class ProviderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	public function testAddDocumentWithEmptyDocument(){
 		$document = new \TechDivision\Search\Document\Document();
-		$inputBuilderMock = $this->getMock('\TechDivision\Search\Provider\Solr\InputBuilder');
+		$inputBuilderMock = $this->getMock('\TechDivision\Search\Provider\Solr\Extension\InputBuilder');
 		$this->inject($this->provider, 'inputBuilder', $inputBuilderMock);
 		$this->assertSame(false, $this->provider->addDocument($document));
 	}
@@ -100,7 +100,7 @@ class ProviderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 	public function testAddDocumentClientException(){
 		$document = new \TechDivision\Search\Document\Document();
 		$document->addField(new \TechDivision\Search\Field\Field('id', 'value'));
-		$this->inject($this->provider, 'inputBuilder', new \TechDivision\Search\Provider\Solr\InputBuilder());
+		$this->inject($this->provider, 'inputBuilder', new \TechDivision\Search\Provider\Solr\Extension\InputBuilder());
 
 		$clientMock = $this->getMockBuilder('\SolrClient', array('addDocument'))->disableOriginalConstructor()->getMock();
 		$solrUpdateResponseMock = $this->getMock('\SolrUpdateResponse', array('success'));
@@ -117,7 +117,7 @@ class ProviderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 	public function testAddDocumentNotCaugthClientException(){
 		$document = new \TechDivision\Search\Document\Document();
 		$document->addField(new \TechDivision\Search\Field\Field('id', 'value'));
-		$this->inject($this->provider, 'inputBuilder', new \TechDivision\Search\Provider\Solr\InputBuilder());
+		$this->inject($this->provider, 'inputBuilder', new \TechDivision\Search\Provider\Solr\Extension\InputBuilder());
 
 		$clientMock = $this->getMockBuilder('\SolrClient', array('addDocument'))->disableOriginalConstructor()->getMock();
 		$solrUpdateResponseMock = $this->getMock('\SolrUpdateResponse', array('success'));
@@ -144,7 +144,7 @@ class ProviderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 	public function testAddDocumentClientSuccessful(){
 		$document = new \TechDivision\Search\Document\Document();
 		$document->addField(new \TechDivision\Search\Field\Field('id', 'value'));
-		$this->inject($this->provider, 'inputBuilder', new \TechDivision\Search\Provider\Solr\InputBuilder());
+		$this->inject($this->provider, 'inputBuilder', new \TechDivision\Search\Provider\Solr\Extension\InputBuilder());
 
 		$clientMock = $this->getMockBuilder('\SolrClient', array('addDocument'))->disableOriginalConstructor()->getMock();
 		$solrUpdateResponseMock = $this->getMock('\SolrUpdateResponse', array('success'));
@@ -156,7 +156,7 @@ class ProviderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 	}
 
 	public function testAddDocumentsNoDocuments(){
-		$this->inject($this->provider, 'inputBuilder', new \TechDivision\Search\Provider\Solr\InputBuilder());
+		$this->inject($this->provider, 'inputBuilder', new \TechDivision\Search\Provider\Solr\Extension\InputBuilder());
 		$this->assertSame(false, $this->provider->addDocuments(array()));
 	}
 
@@ -164,7 +164,7 @@ class ProviderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 	 * @depends testAddDocumentsNoDocuments
 	 */
 	public function testAddDocumentsClientException(){
-		$this->inject($this->provider, 'inputBuilder', new \TechDivision\Search\Provider\Solr\InputBuilder());
+		$this->inject($this->provider, 'inputBuilder', new \TechDivision\Search\Provider\Solr\Extension\InputBuilder());
 		$document = new \TechDivision\Search\Document\Document();
 		$document->addField(new \TechDivision\Search\Field\Field('id', 'value'));
 
@@ -179,7 +179,7 @@ class ProviderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 	 * @depends testAddDocumentsNoDocuments
 	 */
 	public function testAddDocumentsNotCaughtClientException(){
-		$this->inject($this->provider, 'inputBuilder', new \TechDivision\Search\Provider\Solr\InputBuilder());
+		$this->inject($this->provider, 'inputBuilder', new \TechDivision\Search\Provider\Solr\Extension\InputBuilder());
 		$document = new \TechDivision\Search\Document\Document();
 		$document->addField(new \TechDivision\Search\Field\Field('id', 'value'));
 
@@ -204,7 +204,7 @@ class ProviderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 	 * @depends testAddDocumentsClientException
 	 */
 	public function testAddDocumentsSuccessful(){
-		$this->inject($this->provider, 'inputBuilder', new \TechDivision\Search\Provider\Solr\InputBuilder());
+		$this->inject($this->provider, 'inputBuilder', new \TechDivision\Search\Provider\Solr\Extension\InputBuilder());
 		$document = new \TechDivision\Search\Document\Document();
 		$document->addField(new \TechDivision\Search\Field\Field('id', 'value'));
 
@@ -218,17 +218,17 @@ class ProviderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 	}
 
 
-	public function testRemoveDocumentByIdentifierClientException(){
+	public function testRemoveDocumentByFieldClientException(){
 		$clientMock = $this->getMockBuilder('\SolrClient', array('deleteById'))->disableOriginalConstructor()->getMock();
 		$clientMock->expects($this->any())->method('deleteById')->will($this->throwException(new \Exception()));
 		$this->inject($this->provider, 'client', $clientMock);
-		$this->assertSame(false, $this->provider->removeDocumentByIdentifier('identifier'));
+		$this->assertSame(false, $this->provider->removeDocumentByField(new \TechDivision\Search\Field\Field('id', 123)));
 	}
 
 	/**
-	 * @depends testRemoveDocumentByIdentifierClientException
+	 * @depends testRemoveDocumentByFieldClientException
 	 */
-	public function testRemoveDocumentByIdentifierNotCaughtClientException(){
+	public function testRemoveDocumentByFieldNotCaughtClientException(){
 		$clientMock = $this->getMockBuilder('\SolrClient', array('deleteById'))->disableOriginalConstructor()->getMock();
 		$clientMock->expects($this->any())->method('deleteById')->will($this->throwException(new \Exception()));
 		$this->inject($this->provider, 'client', $clientMock);
@@ -239,7 +239,7 @@ class ProviderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 		 * own try catch is better solution
 		 */
 		try {
-			$this->provider->removeDocumentByIdentifier('identifier');
+			$this->provider->removeDocumentByField(new \TechDivision\Search\Field\Field('id', 123));
 		}catch (\Exception $e){
 
 		}
@@ -247,15 +247,15 @@ class ProviderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 	}
 
 	/**
-	 * @depends testRemoveDocumentByIdentifierClientException
+	 * @depends testRemoveDocumentByFieldClientException
 	 */
-	public function testRemoveDocumentByIdentifierSuccessful(){
+	public function testRemoveDocumentByFieldSuccessful(){
 		$clientMock = $this->getMockBuilder('\SolrClient', array('deleteById'))->disableOriginalConstructor()->getMock();
 		$solrUpdateResponseMock = $this->getMock('\SolrUpdateResponse', array('success'));
 		$solrUpdateResponseMock->expects($this->any())->method('success')->will($this->returnValue(true));
 		$clientMock->expects($this->any())->method('deleteById')->will($this->returnValue($solrUpdateResponseMock));
 		$this->inject($this->provider, 'client', $clientMock);
-		$this->assertSame(true, $this->provider->removeDocumentByIdentifier('identifier'));
+		$this->assertSame(true, $this->provider->removeDocumentByField(new \TechDivision\Search\Field\Field('id', 123)));
 	}
 
 	public function testProviderNeedsInputDocuments(){

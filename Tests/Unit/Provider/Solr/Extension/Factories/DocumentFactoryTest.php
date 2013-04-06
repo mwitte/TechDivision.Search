@@ -1,6 +1,6 @@
 <?php
 
-namespace TechDivision\Search\Tests\Unit\Field;
+namespace TechDivision\Search\Tests\Unit\Provider\Solr\Extension\Factories;
 
 /*                                                                        *
  * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
@@ -12,10 +12,10 @@ namespace TechDivision\Search\Tests\Unit\Field;
  * Copyright (C) 2013 Matthias Witte                                      *
  * http://www.matthias-witte.net                                          */
 
-class SolrDocumentFactoryTest extends \TYPO3\Flow\Tests\UnitTestCase {
+class DocumentFactoryTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	/**
-	 * @var \TechDivision\Search\Document\SolrDocumentFactory
+	 * @var \TechDivision\Search\Provider\Solr\Extension\Factories\DocumentFactory
 	 */
 	protected $documentFactory;
 
@@ -25,26 +25,26 @@ class SolrDocumentFactoryTest extends \TYPO3\Flow\Tests\UnitTestCase {
 	protected $document;
 
 	/**
-	 * @var \TechDivision\Search\Field\SolrFieldFactory
+	 * @var \TechDivision\Search\Provider\Solr\Extension\Factories\FieldFactory
 	 */
 	protected $fieldFactoryMock;
 
 	/**
-	 * @var \TechDivision\Search\Field\SolrFieldFactory
+	 * @var \TechDivision\Search\Provider\Solr\Extension\Factories\FieldFactory
 	 */
 	protected $fieldFactory;
 
 	public function setUp(){
 		parent::setUp();
-		$this->documentFactory = new \TechDivision\Search\Document\SolrDocumentFactory();
+		$this->documentFactory = new \TechDivision\Search\Provider\Solr\Extension\Factories\DocumentFactory();
 		$this->document = new \TechDivision\Search\Document\Document();
 
-		$this->fieldFactoryMock = $this->getMock('\TechDivision\Search\Field\SolrFieldFactory', array('createFieldsWith'));
+		$this->fieldFactoryMock = $this->getMock('\TechDivision\Search\Provider\Solr\Extension\Factories\FieldFactory', array('createFieldsWith'));
 		$this->fieldFactoryMock->expects($this->any())
 			 ->method('createFieldsWith')
 			 ->will($this->returnValue(array()));
 
-		$this->fieldFactory = new \TechDivision\Search\Field\SolrFieldFactory();
+		$this->fieldFactory = new \TechDivision\Search\Provider\Solr\Extension\Factories\FieldFactory();
 	}
 
 	public function testCreateFromResponseWithEmptyResponse(){
@@ -78,7 +78,7 @@ class SolrDocumentFactoryTest extends \TYPO3\Flow\Tests\UnitTestCase {
 		$document = new \TechDivision\Search\Document\Document();
 		$document->addField(new \TechDivision\Search\Field\Field('fieldName', 'fieldValue'));
 
-		$this->assertEquals(array($document), $this->documentFactory->createFromResponse($incompleteResponse, new \TechDivision\Search\Field\SolrFieldFactory()));
+		$this->assertEquals(array($document), $this->documentFactory->createFromResponse($incompleteResponse, new \TechDivision\Search\Provider\Solr\Extension\Factories\FieldFactory()));
 	}
 }
 ?>

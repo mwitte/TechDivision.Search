@@ -1,6 +1,6 @@
 <?php
 
-namespace TechDivision\Search\Tests\Unit\Provider\Solr;
+namespace TechDivision\Search\Tests\Unit\Provider\Solr\Extension;
 
 /*                                                                        *
  * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
@@ -15,7 +15,7 @@ namespace TechDivision\Search\Tests\Unit\Provider\Solr;
 class InputBuilderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	/**
-	 * @var \TechDivision\Search\Provider\Solr\InputBuilder
+	 * @var \TechDivision\Search\Provider\Solr\Extension\InputBuilder
 	 */
 	protected $inputBuilder;
 
@@ -31,7 +31,7 @@ class InputBuilderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	public function setUp(){
 		parent::setUp();
-		$this->inputBuilder = new \TechDivision\Search\Provider\Solr\InputBuilder();
+		$this->inputBuilder = new \TechDivision\Search\Provider\Solr\Extension\InputBuilder();
 
 		// create an empty document mock
 		$this->emptyDocumentMock = $this->getMock("\TechDivision\Search\Document\Document", array("getFields", "getBoost"));

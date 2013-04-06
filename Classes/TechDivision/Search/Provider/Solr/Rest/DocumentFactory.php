@@ -1,6 +1,6 @@
 <?php
 
-namespace TechDivision\Search\Field;
+namespace TechDivision\Search\Provider\Solr\Rest;
 
 /*                                                                        *
  * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
@@ -12,20 +12,25 @@ namespace TechDivision\Search\Field;
  * Copyright (C) 2013 Matthias Witte                                      *
  * http://www.matthias-witte.net                                          */
 
-class SolrFieldFactory
+class DocumentFactory
 {
 	/**
-	 * Creates an array of Fields by given array of Documents
+	 * Creates an array of Documents by an response which implements ArrayAccess
 	 *
-	 * @param array $documentArray
-	 * @return array contains
+	 * @param array $rawDocs
 	 */
-	public function createFieldsWith($documentArray){
-		$fields = array();
-		// create one field for each field in the response
-		foreach($documentArray as $fieldName => $fieldValue){
-			$fields[] = new Field($fieldName, $fieldValue);
+	public function createFromResponse(array $rawDocs){
+		$documents = array();
+		foreach($rawDocs as $rawDoc){
+			$document = new \TechDivision\Search\Document\Document();
+			foreach($rawDoc as $fieldName => $fieldValue){
+				$field = new \TechDivision\Search\Field\Field($fieldName, $fieldValue);
+				$document->addField($field);
+			}
+			if($document->getFieldCount() > 0){
+				$documents[] = $document;
+			}
 		}
-		return $fields;
+		return $documents;
 	}
 }

@@ -1,5 +1,6 @@
 <?php
-namespace TechDivision\Search\Provider\Solr;
+
+namespace TechDivision\Search\Provider\Solr\Extension;
 
 /*                                                                        *
  * This belongs to the TYPO3 Flow package "TechDivision.Search"       *

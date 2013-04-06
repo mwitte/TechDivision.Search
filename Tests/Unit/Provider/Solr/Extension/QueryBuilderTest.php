@@ -1,6 +1,6 @@
 <?php
 
-namespace TechDivision\Search\Tests\Unit\Provider\Solr;
+namespace TechDivision\Search\Tests\Unit\Provider\Solr\Extension;
 
 /*                                                                        *
  * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
@@ -15,7 +15,7 @@ namespace TechDivision\Search\Tests\Unit\Provider\Solr;
 class QueryBuilderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	/**
-	 * @var \TechDivision\Search\Provider\Solr\QueryBuilder
+	 * @var \TechDivision\Search\Provider\Solr\Extension\QueryBuilder
 	 */
 	protected $queryBuilder;
 
@@ -26,7 +26,7 @@ class QueryBuilderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	public function setUp(){
 		parent::setUp();
-		$this->queryBuilder = new \TechDivision\Search\Provider\Solr\QueryBuilder();
+		$this->queryBuilder = new \TechDivision\Search\Provider\Solr\Extension\QueryBuilder();
 		$this->query = new \SolrQuery();
 		$this->query->setRows(50);
 		$this->query->setStart(0);

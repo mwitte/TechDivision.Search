@@ -1,5 +1,6 @@
 <?php
-namespace TechDivision\Search\Provider\Solr;
+
+namespace TechDivision\Search\Provider\Solr\Extension;
 
 /*                                                                        *
  * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
@@ -30,19 +31,19 @@ class Provider implements \TechDivision\Search\Provider\ProviderInterface
 	protected $settings;
 
 	/**
-	 * @var \TechDivision\Search\Provider\Solr\QueryBuilder
+	 * @var \TechDivision\Search\Provider\Solr\Extension\QueryBuilder
 	 * @FLOW\Inject
 	 */
 	protected $queryBuilder;
 
 	/**
-	 * @var \TechDivision\Search\Provider\Solr\ResponseBuilder
+	 * @var \TechDivision\Search\Provider\Solr\Extension\ResponseBuilder
 	 * @FLOW\Inject
 	 */
 	protected $responseBuilder;
 
 	/**
-	 * @var \TechDivision\Search\Provider\Solr\InputBuilder
+	 * @var \TechDivision\Search\Provider\Solr\Extension\InputBuilder
 	 * @FLOW\Inject
 	 */
 	protected $inputBuilder;
@@ -160,13 +161,13 @@ class Provider implements \TechDivision\Search\Provider\ProviderInterface
 
 
 	/**
-	 * @param string $identifier
+	 * @param \TechDivision\Search\Field\Field $field
 	 * @return bool
 	 */
-	public function removeDocumentByIdentifier($identifier)
+	public function removeDocumentByField(\TechDivision\Search\Field\Field $field)
 	{
 		try{
-			$response = $this->client->deleteById($identifier);
+			$response = $this->client->deleteById($field->getValue());
 			$this->client->commit(
 				$this->settings['Solr']['Commit']['maxSegments'],
 				$this->settings['Solr']['Commit']['waitFlush'],

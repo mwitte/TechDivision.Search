@@ -35,10 +35,10 @@ interface ProviderInterface
 	/**
 	 * Removes one single document by it's identifier
 	 *
-	 * @param string $identifier
+	 * @param \TechDivision\Search\Field\Field $field
 	 * @return bool
 	 */
-	public function removeDocumentByIdentifier($identifier);
+	public function removeDocumentByField(\TechDivision\Search\Field\Field $field);
 
 	/**
 	 * Resolves documents which implement the DocumentInterface

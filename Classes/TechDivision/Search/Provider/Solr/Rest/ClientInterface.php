@@ -1,5 +1,6 @@
 <?php
-namespace TechDivision\Search\Provider\Solr;
+
+namespace TechDivision\Search\Provider\Solr\Rest;
 
 /*                                                                        *
  * This belongs to the TYPO3 Flow package "TechDivision.Search"       *
@@ -11,26 +12,20 @@ namespace TechDivision\Search\Provider\Solr;
  * Copyright (C) 2013 Matthias Witte                                      *
  * http://www.matthias-witte.net                                          */
 
-use TYPO3\Flow\Annotations as Flow;
-/**
- * @Flow\Scope("singleton")
- */
-class ResponseBuilder
+use \TechDivision\Search\Document\DocumentInterface;
+
+interface ClientInterface
 {
 	/**
-	 * Creates an array of documents by the given \SolrQueryResponse
-	 *
-	 * @param \SolrQueryResponse $rawResponse
-	 * @return array
+	 * @param string $url
+	 * @return string
 	 */
-	public function createProviderSearchResponse(\SolrQueryResponse $rawResponse){
-		// no singletons because of UnitTesting
-		$documentFactory = new \TechDivision\Search\Document\SolrDocumentFactory();
-		$fieldFactory = new \TechDivision\Search\Field\SolrFieldFactory();
-		$response = $rawResponse->getResponse();
-		if($response){
-			return $documentFactory->createFromResponse($response, $fieldFactory);
-		}
-		return array();
-	}
+	public function get($url);
+
+	/**
+	 * @param string $url
+	 * @param array $postParams
+	 * @return string
+	 */
+	public function post($url, array $postParams);
 }
