@@ -1,7 +1,7 @@
 TechDivision.Search
 ===================
 
-The TechDivision.Search package provides an interface for the TechDivision.Neos.Search package. There are two different
+This package provides an interface for the [TechDivision.Neos.Search](https://github.com/mwitte/TechDivision.Neos.Search) package. There are two different
 implementations provided:
 
 ### Solr Rest
@@ -65,13 +65,13 @@ functional tests.
 The functional tests are currently not suitable, the last changes in the TYPO3 Flow framework made it nearly impossible
 to cover the code with 100%. There is already an issue for that in forge to fix it.
 
-https://forge.typo3.org/issues/46974
+[https://forge.typo3.org/issues/46974](https://forge.typo3.org/issues/46974)
 
 
 Why this namespace?
 -------------------
 
-Until now this is a non-corporate project i made in my leisure time. I chose this namespace to participate at a company
+Until now this is a non-corporate project I made in my leisure time. I chose this namespace to participate at a company
 internal contest.
 
 
@@ -84,4 +84,4 @@ It is free software; you can redistribute it and/or modify it under the terms of
 either version 3 of the License, or (at your option) any later version.
 
 Copyright (C) 2013 Matthias Witte
-http://www.matthias-witte.net
+[http://www.matthias-witte.net](http://www.matthias-witte.net)
